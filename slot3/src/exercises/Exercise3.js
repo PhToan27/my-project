@@ -8,7 +8,14 @@ const employees = [
   
   export default function Exercise3() {
     return (
+      
+      <div>
+
+        <h2> {employees[1].name} {employees[1].department} {employees[1].age}</h2>
+      
+
       <table border="1">
+      
         <thead>
           <tr>
             <th>ID</th>
@@ -17,6 +24,7 @@ const employees = [
           </tr>
         </thead>
         <tbody>
+          
           {employees.map((emp, index) => (
             <tr key={emp.id || index}>
               <td>{emp.id || index}</td>
@@ -26,6 +34,7 @@ const employees = [
           ))}
         </tbody>
       </table>
+      </div>
     );
   }
   

@@ -1,4 +1,5 @@
 const employees = [
+  
     { id: 1, name: "Anna" },
     { id: 2, name: "Brian" },
     { id: 3, name: "Clara" },
@@ -7,6 +8,7 @@ const employees = [
   ];
   
   export default function Exercise5() {
+    
     return (
       <select>
         {employees.map((emp, index) => (

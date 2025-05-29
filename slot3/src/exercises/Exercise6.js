@@ -11,7 +11,7 @@ const employees = [
     return (
       <ul>
         {itEmployees.map((emp, index) => (
-          <li key={emp.id || index}>{emp.name}</li>
+          <li key={emp.id || index}>{emp.name}-{emp.department}</li>
         ))}
       </ul>
     );
