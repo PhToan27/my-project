@@ -19,6 +19,7 @@ function Bai5() {
 
   return (
     <div>
+      
       {/* Header */}
       <header className="bg-warning p-2">
         <div className="container d-flex justify-content-between align-items-center">
@@ -73,6 +74,7 @@ function Bai5() {
                         type="radio"
                         name={`status-${index}`}
                         id={`absent-${index}`}
+                        defaultChecked 
                       />
                       <label className="form-check-label" htmlFor={`absent-${index}`}>
                         Absent
@@ -84,6 +86,7 @@ function Bai5() {
                         type="radio"
                         name={`status-${index}`}
                         id={`present-${index}`}
+                        
                       />
                       <label className="form-check-label" htmlFor={`present-${index}`}>
                         Present

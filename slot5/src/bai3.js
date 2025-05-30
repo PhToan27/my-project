@@ -35,7 +35,7 @@ function Bai3() {
         <div className="row mb-2">
           <div className="col bg-light border p-3 text-center">col</div>
           <div className="col bg-light border p-3 text-center">col</div>
-          <div className="col bg-light border p-3 text-center">col</div>
+                 
         </div>
         <div className="row">
           <div className="col bg-light border p-3 text-center">col</div>
