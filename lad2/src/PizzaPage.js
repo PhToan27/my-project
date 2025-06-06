@@ -1,7 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// Import hình ảnh từ src/images/
 import menu1 from './images/menu1.png';
 import menu2 from './images/menu2.png';
 import menu3 from './images/menu3.png';
@@ -9,10 +7,10 @@ import menu4 from './images/menu4.png';
 import pizza1 from './images/pizza1.png';
 import pizza2 from './images/pizza2.png';
 import pizza3 from './images/pizza3.png';
-import pizza4 from './images/pizza4.png';
-import pizza5 from './images/pizza5.png';
+
 
 function PizzaPage() {
+  <css />;
   const pizzas = [
     {
       name: 'Margherita Pizza',
@@ -40,6 +38,7 @@ function PizzaPage() {
       tag: 'SALE',
       image: menu4,
     },
+    
   ];
 
   return (
@@ -63,9 +62,14 @@ function PizzaPage() {
         </div>
       </nav>
 
-      {/* Slider */}
+      
      {/* Carousel Slider */}
-<div id="pizzaCarousel" className="carousel slide" data-bs-ride="carousel">
+<div id="pizzaCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+<div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
   <div className="carousel-inner">
     <div className="carousel-item active">
       <img src={pizza1} className="d-block w-100" alt="Slide 1" />
