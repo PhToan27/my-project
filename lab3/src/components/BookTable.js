@@ -25,7 +25,9 @@ function BookTable() {
         <Form.Group className="mb-3">
           <Form.Control as="textarea" rows={4} placeholder="Please write your comment" />
         </Form.Group>
+        
         <Button type="submit" variant="warning" className="text-white">Send Message</Button>
+        
       </Form>
     </Container>
   );
