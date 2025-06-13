@@ -1,3 +1,4 @@
+
 const UserProfile = ({ user }) => (
     <div>
       <p>

@@ -28,7 +28,7 @@ function App() {
             <Col key={index} sm={12} md={4}>
               <StudentCard student={student} />
             </Col>
-          ))}
+          ))}x``
         </Row>
       </Container>
 
