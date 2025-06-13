@@ -3,9 +3,13 @@ import Counter from "./component/example1";
 import Ex2 from "./component/example2";
 import ProductList from "./component/example3";
 import ProductList2 from "./component/example4";
+import { useState } from 'react';
+ 
 function App() {
+  const [name] = useState('Toan');
   return (
     <>
+    <p>My name is {name}</p>
     <h2>vi du 1</h2>
  <Counter />
      <h2>vi du 2</h2>
