@@ -10,12 +10,12 @@ function InputField() {
         <Card.Title>Controlled Input Field</Card.Title>
         <Form.Group>
           <Form.Label>Type something:</Form.Label>
-          <Form.Control
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Enter text here"
-          />
+         <Form.Control
+         value={text}
+         type="text"
+         onChange={(e) =>setText(e.target.value) }
+         placeholder="enter here"
+         />
         </Form.Group>
         <Card.Text className="mt-2">You typed: {text}</Card.Text>
       </Card.Body>

@@ -15,7 +15,7 @@ function SearchFilter() {
         <Card.Title>Search Filter</Card.Title>
         <Form.Group>
           <Form.Control
-            type="text"
+            type="text" 
             placeholder="Search fruits..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
