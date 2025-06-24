@@ -50,7 +50,7 @@ const initialState = {
 function ItemList() {
   const [state, dispatch] = useReducer(listReducer, initialState);
   const [newItemName, setNewItemName] = useState("");
-  const [editId, setEditId] = useState(null);
+  const [editId, setEditId] = useState(null);   
   const [editText, setEditText] = useState("");
 
   // Thêm item mới
