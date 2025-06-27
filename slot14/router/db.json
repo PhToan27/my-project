@@ -1,0 +1,30 @@
+{
+    "posts": [
+      {
+        "id": "101",
+        "title": "Giới thiệu về React",
+        "content": "React là một thư viện JavaScript dùng để xây dựng giao diện người dùng."
+      },
+      {
+        "id": "102",
+        "title": "Hooks trong React",
+        "content": "Hooks cho phép sử dụng state và các tính năng khác mà không cần viết class."
+      },
+      {
+        "id": "103",
+        "title": "Tìm hiểu về useEffect",
+        "content": "useEffect là một hook dùng để xử lý các side effect như gọi API, thao tác DOM..."
+      },
+      {
+        "id": "104",
+        "title": "Sử dụng React Router",
+        "content": "React Router giúp điều hướng trong ứng dụng SPA một cách dễ dàng."
+      },
+      {
+        "id": "105",
+        "title": "Quản lý state với useReducer",
+        "content": "useReducer là một hook mạnh mẽ giúp tổ chức logic phức tạp một cách rõ ràng hơn."
+      }
+    ]
+  }
+  
