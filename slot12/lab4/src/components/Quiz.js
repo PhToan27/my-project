@@ -1,120 +1,152 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { QuizContext } from './QuizContext';
-
-export const quizData = [
-  {
-    question: 'What is ReactJS?',
-    answers: [
-      'A JavaScript library for building user interfaces',
-      'A programming language',
-      'A database management system'
-    ],
-    correctAnswer: 'A JavaScript library for building user interfaces'
-  },
-  {
-    question: 'What is JSX?',
-    answers: [
-      'A programming language',
-      'A file format',
-      'A syntax extension for JavaScript'
-    ],
-    correctAnswer: 'A syntax extension for JavaScript'
-  }
-];
+import React, { useContext, useEffect, useState } from 'react';
+import { QuizContext } from '../context/QuizContext';
+import { Button, Card, Form } from 'react-bootstrap';
 
 function Quiz() {
-  const { selectedAnswers, setSelectedAnswers } = useContext(QuizContext);
-  const [questions, setQuestions] = useState([]);
+  const {
+    quizData,
+    currentQuestion,
+    selectedAnswers,
+    checkAnswer,
+    next,
+    isCompleted,
+    addQuestion 
+  } = useContext(QuizContext);
+
+  const [currentQ, setCurrentQ] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false); 
   const [newQuestion, setNewQuestion] = useState('');
   const [newAnswers, setNewAnswers] = useState(['', '', '']);
   const [newCorrectAnswer, setNewCorrectAnswer] = useState('');
 
-  // Gọi khi load lần đầu để set dữ liệu mặc định
   useEffect(() => {
-    setQuestions(quizData);
-  }, []);
-
-  // Chọn câu trả lời
-  const handleSelect = (qIndex, answer) => {
-    setSelectedAnswers(prev => ({
-      ...prev,
-      [qIndex]: answer
-    }));
-  };
-
-  // Thêm câu hỏi mới
-  const handleAddQuestion = () => {
-    if (newQuestion && newAnswers.every(a => a) && newCorrectAnswer) {
-      const newQ = {
-        question: newQuestion,
-        answers: newAnswers,
-        correctAnswer: newCorrectAnswer
-      };
-      setQuestions(prev => [...prev, newQ]);
-      setNewQuestion('');
-      setNewAnswers(['', '', '']);
-      setNewCorrectAnswer('');
+    if (quizData.length > 0) {
+      setCurrentQ(quizData[currentQuestion]);
     }
-  };
+  }, [quizData, currentQuestion]);
+
+  if (!currentQ) return <p>Loading...</p>;
+
+  if (isCompleted) {
+    const score = Object.keys(selectedAnswers).filter(
+      (i) => quizData[i]?.correctAnswer === selectedAnswers[i]
+    ).length;
+    return (
+      <div className="container mt-4 text-center">
+        <h2>Quiz Completed!</h2>
+        <h4>Your Score: {score} / {quizData.length}</h4>
+        
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <h2>Quiz</h2>
+    <div className="container mt-4">
+      <Card>
+        <Card.Body>
+          <Card.Title>Question {currentQuestion + 1}</Card.Title>
+          <Card.Text>{currentQ.question}</Card.Text>
 
-      {/* Form nhập câu hỏi mới */}
-      <div style={{ marginBottom: '30px' }}>
-        <h3>Add a new question</h3>
-        <input
-          type="text"
-          placeholder="Enter question"
-          value={newQuestion}
-          onChange={e => setNewQuestion(e.target.value)}
-        />
-        {newAnswers.map((a, i) => (
-          <input
-            key={i}
-            type="text"
-            placeholder={`Answer ${i + 1}`}
-            value={a}
-            onChange={e => {
-              const updated = [...newAnswers];
-              updated[i] = e.target.value;
-              setNewAnswers(updated);
-            }}
-          />
-        ))}
-        <input
-          type="text"
-          placeholder="Correct Answer"
-          value={newCorrectAnswer}
-          onChange={e => setNewCorrectAnswer(e.target.value)}
-        />
-        <button onClick={handleAddQuestion}>Add Question</button>
-      </div>
-
-      {/* Hiển thị danh sách câu hỏi */}
-      {questions.map((q, index) => (
-        <div key={index} style={{ marginBottom: '20px' }}>
-          <p><strong>{q.question}</strong></p>
-          {q.answers.map((a, i) => (
-            <div key={i}>
-              <input
+          <Form>
+            {currentQ.answers.map((ans, i) => (
+              <Form.Check
+                key={i}
                 type="radio"
-                name={`q${index}`}
-                value={a}
-                checked={selectedAnswers[index] === a}
-                onChange={() => handleSelect(index, a)}
+                name="answer"
+                label={ans}
+                value={ans}
+                checked={selectedAnswers[currentQuestion] === ans}
+                onChange={() => checkAnswer(currentQuestion, ans)}
               />
-              {a}
-            </div>
-          ))}
-          {selectedAnswers[index] && (
-            <p style={{ color: selectedAnswers[index] === q.correctAnswer ? 'green' : 'red' }}>
-              {selectedAnswers[index] === q.correctAnswer ? 'Correct!' : 'Incorrect'}
-            </p>
-          )}
-        </div>
-      ))}
+            ))}
+          </Form>
+
+          <Button
+            variant="danger"
+            onClick={next}
+            disabled={!selectedAnswers[currentQuestion]}
+            className="mt-3"
+          >
+            {currentQuestion + 1 < quizData.length ? 'Next' : 'Submit'}
+          </Button>
+
+          <div className="mt-3">
+            <Button
+              variant="secondary"
+              onClick={() => setShowAddForm(!showAddForm)}
+            >
+              {showAddForm ? 'Hide Add Question' : 'Add New Question'}
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
+
+      {showAddForm && (
+        <Card className="mt-4">
+          <Card.Body>
+            <Card.Title>Add New Question</Card.Title>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (
+                  !newQuestion ||
+                  newAnswers.some((a) => !a) ||
+                  !newCorrectAnswer
+                ) {
+                  alert('Please fill in all fields.');
+                  return;
+                }
+
+                addQuestion({
+                  question: newQuestion,
+                  answers: newAnswers,
+                  correctAnswer: newCorrectAnswer
+                });
+
+                setNewQuestion('');
+                setNewAnswers(['', '', '']);
+                setNewCorrectAnswer('');
+                alert('New question added!');
+              }}
+            >
+              <Form.Group className="mb-3">
+                <Form.Label>Question</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={newQuestion}
+                  onChange={(e) => setNewQuestion(e.target.value)}
+                />
+              </Form.Group>
+
+              {newAnswers.map((ans, idx) => (
+                <Form.Group className="mb-3" key={idx}>
+                  <Form.Label>Answer {idx + 1}</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={ans}
+                    onChange={(e) => {
+                      const newArr = [...newAnswers];
+                      newArr[idx] = e.target.value;
+                      setNewAnswers(newArr);
+                    }}
+                  />
+                  <Form.Check
+                    type="radio"
+                    name="correctAnswer"
+                    label="Correct Answer"
+                    checked={newCorrectAnswer === ans}
+                    onChange={() => setNewCorrectAnswer(ans)}
+                  />
+                </Form.Group>
+              ))}
+
+              <Button type="submit" variant="success">
+                Add Question
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      )}
     </div>
   );
 }

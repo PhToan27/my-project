@@ -1,14 +1,13 @@
-// src/App.js
 import React from 'react';
+import { QuizProvider } from './context/QuizContext';
 import Quiz from './components/Quiz';
-import { QuizProvider } from './components/QuizContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
     <QuizProvider>
-      <div className="App">
-        <Quiz />
-      </div>
+      <Quiz />
     </QuizProvider>
   );
 }
