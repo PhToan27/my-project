@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "description": "A fantasy novel about a hobbit’s adventure.",
+      "price": 50000,
+      "image": "images/hobbit.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Harry Porter",
+      "author": "George Orwell",
+      "description": "Dystopian novel about surveillance society.",
+      "price": 1200,
+      "image": "images/harry.jpg"
+    }
+  ]
+}
