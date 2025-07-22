@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Button, Row, Col, Form, Container, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
+
 
 function LaptopList() {
   const [laptops, setLaptops] = useState([]);
@@ -42,6 +44,63 @@ function LaptopList() {
     <Button type="submit" variant="primary">Search</Button>
   </InputGroup>
 </Form>
+
+<Carousel className="mb-4">
+  <Carousel.Item>
+    <img
+      className="d-block w-40"
+      src="images/dell-xps13.jpg"
+      alt="Slide 1"
+      style={{ height: '350px', objectFit: 'cover', borderRadius: '10px' }}
+    />
+    <Carousel.Caption style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      borderRadius: '10px',
+      padding: '10px 20px',
+      color: '#000'
+    }}>
+      <h3 style={{ color: '#000' }}>Powerful Performance</h3>
+      <p style={{ color: '#333' }}>Discover the latest laptops with high-end specs.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+
+  <Carousel.Item>
+    <img
+      className="d-block w-40"
+      src="images/hp-spectre.jpg"
+      alt="Slide 2"
+      style={{ height: '350px', objectFit: 'cover', borderRadius: '10px' }}
+    />
+    <Carousel.Caption style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      borderRadius: '10px',
+      padding: '10px 20px',
+      color: '#000'
+    }}>
+      <h3 style={{ color: '#000' }}>Modern & Sleek</h3>
+      <p style={{ color: '#333' }}>Stylish laptops designed for every need.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+
+  <Carousel.Item>
+    <img
+      className="d-block w-40"
+      src="images/lenovo-thinkpad.jpg"
+      alt="Slide 3"
+      style={{ height: '350px', objectFit: 'cover', borderRadius: '10px' }}
+    />
+    <Carousel.Caption style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      borderRadius: '10px',
+      padding: '10px 20px',
+      color: '#000'
+    }}>
+      <h3 style={{ color: '#000' }}>Work from Anywhere</h3>
+      <p style={{ color: '#333' }}>Mobility meets productivity in every device.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
+
 
 
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
